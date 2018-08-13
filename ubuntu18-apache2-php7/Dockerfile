@@ -31,7 +31,7 @@ RUN chmod 755 -R /var/www/
 # TODO:: Install MariaDB
 
 # Mount Volumes
-VOLUME "/etc/apache2/sites-enabled/" "/var/www/" 
+VOLUME "/etc/apache2/sites-enabled/" "/var/www/html/" 
 
 # Expose ports
 EXPOSE 80 443
