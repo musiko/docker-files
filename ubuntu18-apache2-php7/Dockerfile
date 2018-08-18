@@ -1,6 +1,8 @@
 # The line below states we will base our new image on the Latest Official Ubuntu 
 FROM ubuntu:18.04
 
+ENV MEMORY_LIMIT "128MB"
+
 # Identify the maintainer of an image
 MAINTAINER My Name "info@juicyapphk.com"
 
@@ -15,12 +17,12 @@ ENV TZ Asia/Hong_Kong
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # RUN hostnamectl set-hostname 'ubuntu18_apache2_php7'
 
-# Install apache2 and modules
-RUN apt install -y apache2 && a2enmod rewrite && a2enmod headers && a2enmod proxy && a2enmod ssl
+# Install vim apache2 and modules
+RUN apt install -y vim apache2 && a2enmod rewrite && a2enmod headers && a2enmod proxy && a2enmod ssl
 
 # Install PHP 7.2+ and modules
 RUN apt install -y software-properties-common
-RUN apt install -y php php-fpm php-common php-mysql php-curl php-cli php-gd php-mbstring php-xml php-soap
+RUN apt install -y php7.2 php7.2-fpm php7.2-common php7.2-mysql php7.2-curl php7.2-cli php7.2-gd php7.2-mbstring php7.2-xml php7.2-soap
 
 # Add user and associated to www-data group
 RUN adduser juicyapp
@@ -32,6 +34,9 @@ RUN chmod 755 -R /var/www/
 
 # Apache config file
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Set php memory limit
+RUN cd /etc/php/7.2/fpm/ && touch php.ini && echo "memory_limit="$MEMORY_LIMIT";" >> php.ini
 
 # Mount Volumes
 VOLUME "/var/www/html/" 
