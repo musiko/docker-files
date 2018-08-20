@@ -22,7 +22,7 @@ RUN apt install -y vim apache2 && a2enmod rewrite && a2enmod headers && a2enmod 
 
 # Install PHP 7.2+ and modules
 RUN apt install -y software-properties-common
-RUN apt install -y php7.2 php7.2-fpm php7.2-common php7.2-mysql php7.2-curl php7.2-cli php7.2-gd php7.2-mbstring php7.2-xml php7.2-soap
+RUN apt install -y php php-fpm php-common php-mysql php-curl php-cli php-gd php-mbstring php-xml php-soap
 
 # Add user and associated to www-data group
 RUN adduser juicyapp
@@ -36,7 +36,7 @@ RUN chmod 755 -R /var/www/
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Set php memory limit
-RUN cd /etc/php/7.2/fpm/ && touch php.ini && echo "memory_limit="$MEMORY_LIMIT";" >> php.ini
+RUN cd /etc/php/7.2/apache2/ && touch php.ini && echo "memory_limit="$MEMORY_LIMIT";" >> php.ini
 
 # Mount Volumes
 VOLUME "/var/www/html/" 
