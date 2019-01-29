@@ -11,7 +11,7 @@ RUN apt update && apt upgrade -y
 
 # Install apt-utils and tools
 RUN apt -y install apt-utils nano htop vim goaccess rsyslog cron git libnss3-tools
-RUN apt -y python3-pip
+RUN apt -y install python3-pip
 
 # Setup cron log with rsyslog
 RUN sed -i.bak -r $'s/#cron.*\t\t\t\t\/var\/log\/cron.log/cron.*\t\t\t\t\/var\/log\/cron.log/g' /etc/rsyslog.d/50-default.conf
