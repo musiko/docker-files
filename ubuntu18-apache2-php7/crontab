@@ -24,8 +24,8 @@
 MAILTO=""
 
 # WKCDA Queue Room
-* * * * *       CI_ENV=development php /var/www/html/wkcda_queue_room/index.php cli per_5_seconds
-* * * * *       CI_ENV=development php /var/www/html/wkcda_queue_room/index.php cli per_minutes
-*/15 * * * *    CI_ENV=development php /var/www/html/wkcda_queue_room/index.php cli per_15_minutes
-0 4 * * *       CI_ENV=development php /var/www/html/wkcda_queue_room/index.php cli per_daily
+* * * * *       /var/www/html/wkcda_queue_room/cli per_5_seconds
+* * * * *       /var/www/html/wkcda_queue_room/cli per_minutes
+*/15 * * * *    /var/www/html/wkcda_queue_room/cli per_15_minutes
+0 4 * * *       /var/www/html/wkcda_queue_room/cli daily
 
